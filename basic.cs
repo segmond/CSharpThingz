@@ -2,6 +2,9 @@
 using System;
 using System.Numerics;
 using System.Text;
+using System.Collections.Generic;
+using System.Collections;
+
 namespace Hello
 {
     public class HelloWorld
@@ -58,6 +61,28 @@ namespace Hello
             foo = foo.Replace(foo.ToString(), foo.ToString().ToUpper());
         }
 
+        static void switch_test()
+        {
+            switch ("1") {
+                case "1":
+                    Console.WriteLine("switch 1");
+                    //goto case "2"; // ERROR: we can't fall through
+                    // must add break;
+                    break;
+                case "2":
+                    Console.WriteLine("switch 2");
+                    break;
+            }
+        }
+
+        static void foreach_test()
+        {
+            List<string> msgs = new List<string>{"hello", "world","how","are","you"};
+            foreach (string message in msgs) {
+                Console.WriteLine(message);
+            }
+        }
+
         static public void Main ()
         {
             string user = "Seggy";
@@ -68,13 +93,16 @@ namespace Hello
             foo("FooLabel > ");
             bar("Barzz");
             check_op_test();
-            //big_int_test();
+            //big_int_test(); // works
             string_test(user);
             Console.WriteLine(user);
 
             StringBuilder s = new StringBuilder("Ygges");
             stringbuilder_test(s);
             Console.WriteLine(s);
+
+            switch_test();
+            foreach_test();
         }
     }
 }
